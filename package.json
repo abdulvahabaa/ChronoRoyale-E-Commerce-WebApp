@@ -1,0 +1,38 @@
+{
+  "name": "chronoroyale-e-commerce-webapp",
+  "version": "1.0.0",
+  "description": "A scalable Node.js + Express application powered by MongoDB, AWS S3 storage, and Handlebars templating engine for a dynamic, high-performance shopping experience.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdulvahabaa/ChronoRoyale-E-Commerce-WebApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abdulvahabaa/ChronoRoyale-E-Commerce-WebApp/issues"
+  },
+  "homepage": "https://github.com/abdulvahabaa/ChronoRoyale-E-Commerce-WebApp#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.20.0",
+    "multer": "^2.0.2",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
