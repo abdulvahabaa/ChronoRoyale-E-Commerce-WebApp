@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import multer from "multer";
 import { engine } from "express-handlebars";
 import authRoutes from "./routes/users/authRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +29,11 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+// Add for admin assets
+app.use("/adminAssets", express.static(path.join(__dirname, "public/adminAssets")));
+
+// Add for user assets
+app.use("/userAssets", express.static(path.join(__dirname, "public/userAssets")));
 
 /* FILE STORAGE */
 
@@ -40,12 +46,13 @@ const upload = multer({ storage: storage });
 
 /* ROUTES */
 app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+
 // app.use("/users",userRoutes);
 
 // app.get("/", (req, res) => {
 //     res.send("Hello from Homepage");
 // })
-
 
 app.listen(PORT, () => {
   console.log(
@@ -58,7 +65,7 @@ app.engine(
   "hbs",
   engine({
     extname: ".hbs", // use .hbs extension
-    defaultLayout: "main", // default layout file (main.hbs)
+    defaultLayout: "user", // default layout file (user.hbs)
     layoutsDir: path.join(__dirname, "views/layouts"), // layouts folder
     partialsDir: path.join(__dirname, "views/partials"), // partials folder
     helpers: {
