@@ -54,6 +54,7 @@ const upload = multer({ storage: storage });
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 
+
 // app.use("/users",userRoutes);
 
 app.get("/", (req, res) => {
