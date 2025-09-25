@@ -12,11 +12,17 @@
   <!-- Admin CSS -->
   <link href="/adminAssets/css/main.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body class="dark">
   <main>
-    {{> header}}       <!-- Header partial -->
+    {{#unless (eq title "Admin Login")}}
+    {{> adminHeader}} <!-- Header partial -->
+    {{/unless}}
+
     {{{body}}}          <!-- Page content -->
-    {{> footer}}       <!-- Footer partial -->
+
+    {{#unless (eq title "Admin Login")}}
+    {{> adminFooter}}
+    {{/unless}}     <!-- Footer partial -->
   </main>
 
   <!-- JS -->

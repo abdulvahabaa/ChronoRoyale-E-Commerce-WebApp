@@ -1,24 +1,25 @@
 <section class="content-main mt-80 mb-80">
-  <div class="card mx-auto card-login">
+  <div class="card mx-auto card-login" style="max-width:400px;">
     <div class="card-body">
-      <h4 class="card-title mb-4">Admin Login</h4>
-      <form>
+      <h4 class="card-title mb-4 text-center">Admin Login</h4>
+
+      {{!-- Error alert (if login fails) --}}
+      {{#if error}}
+      <div class="alert alert-danger text-center mb-3">{{error}}</div>
+      {{/if}}
+
+      <form action="/admin/auth/login" method="POST">
         <div class="mb-3">
-          <input class="form-control" placeholder="Username or email" type="text">
+          <input class="form-control" placeholder="Email" type="text" name="email" required>
         </div>
         <div class="mb-3">
-          <input class="form-control" placeholder="Password" type="password">
+          <input class="form-control" placeholder="Password" type="password" name="password" required>
         </div>
-        {{!-- <div class="mb-3">
-          <a href="#" class="float-end font-sm text-muted">Forgot password?</a>
-          <label class="form-check">
-            <input type="checkbox" class="form-check-input" checked="">
-            <span class="form-check-label">Remember</span>
-          </label>
-        </div> --}}
+
         <div class="mb-4">
-          <button type="submit" class="btn btn-primary w-100"> Login </button>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
         </div>
       </form>
+    </div>
   </div>
 </section>

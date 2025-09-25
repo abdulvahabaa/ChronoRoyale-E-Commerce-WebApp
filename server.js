@@ -30,10 +30,16 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 // Add for admin assets
-app.use("/adminAssets", express.static(path.join(__dirname, "public/adminAssets")));
+app.use(
+  "/adminAssets",
+  express.static(path.join(__dirname, "public/adminAssets"))
+);
 
 // Add for user assets
-app.use("/userAssets", express.static(path.join(__dirname, "public/userAssets")));
+app.use(
+  "/userAssets",
+  express.static(path.join(__dirname, "public/userAssets"))
+);
 
 /* FILE STORAGE */
 
@@ -45,14 +51,14 @@ const upload = multer({ storage: storage });
 // app.post("/posts",upload.single("picture"),createPost);
 
 /* ROUTES */
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
+app.use("/auth", authRoutes);
+app.use("/admin", adminRoutes);
 
 // app.use("/users",userRoutes);
 
-// app.get("/", (req, res) => {
-//     res.send("Hello from Homepage");
-// })
+app.get("/", (req, res) => {
+    res.render("user/userLogin", {  title: "User Login" });
+})
 
 app.listen(PORT, () => {
   console.log(
@@ -72,6 +78,7 @@ app.engine(
       // custom helpers for production scaling
       upper: (str) => str.toUpperCase(),
       json: (context) => JSON.stringify(context),
+      eq: (a, b) => a === b,
     },
   })
 );

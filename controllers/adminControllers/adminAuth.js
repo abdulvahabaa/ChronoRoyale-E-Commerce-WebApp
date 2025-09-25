@@ -1,32 +1,47 @@
+// controllers/adminControllers/adminAuth.js
 import jwt from "jsonwebtoken";
 
 export const adminLogin = async (req, res) => {
-    console.log("Admin login route working 🚀");
-    console.log(req.body)
+  // console.log("Admin login function working 🚀");
   try {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required." });
+      return res.render("admin/adminLogin", {
+        layout: "admin",
+        title: "Admin Login",
+        error: "Email and password are required.",
+      });
     }
 
     if (
       email !== process.env.ADMIN_EMAIL ||
       password !== process.env.ADMIN_PASSWORD
     ) {
-      return res.status(400).json({ message: "Invalid credentials." });
+      return res.render("admin/adminLogin", {
+        layout: "admin",
+        title: "Admin Login",
+        error: "Invalid credentials.",
+      });
     }
 
     const token = jwt.sign({ id: "admin" }, process.env.JWT_SECRET, {
-      expiresIn: "2h", // Token expiration time
+      expiresIn: "2h",
     });
 
-    res.status(200).json({ token, message: "Admin logged in successfully." });
+    // console.log("Admin token:", token);
+
+    // store token in cookie for future auth
+    res.cookie("adminToken", token, { httpOnly: true });
+
+    // redirect to dashboard with success message in query
+    return res.redirect("/admin/dashboard");
   } catch (err) {
     console.error("Login Error:", err.message);
-    res.status(500).json({ error: "Internal server error" });
+    res.render("admin/adminLogin", {
+      layout: "admin",
+      title: "Admin Login",
+      error: "Internal server error",
+    });
   }
 };
-
