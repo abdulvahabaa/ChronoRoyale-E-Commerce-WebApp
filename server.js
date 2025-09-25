@@ -9,6 +9,7 @@ import multer from "multer";
 import { engine } from "express-handlebars";
 import authRoutes from "./routes/users/authRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -53,13 +54,11 @@ const upload = multer({ storage: storage });
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
-
-
-// app.use("/users",userRoutes);
+app.use("/", userRoutes);
 
 app.get("/", (req, res) => {
-    res.render("user/userLogin", {  title: "User Login" });
-})
+  res.render("user/userLogin", { title: "User Login" });
+});
 
 app.listen(PORT, () => {
   console.log(
