@@ -22,8 +22,11 @@
   {{#unless (eq title "Admin Login")}}
     {{> adminSidebar}} <!-- Sidebar partial -->
   {{/unless}}
-
-  <main >
+{{#if (eq title "Admin Login")}}
+  <main>
+{{else}}
+  <main class="main-wrap">
+{{/if}}
 
   {{#unless (eq title "Admin Login")}}
     {{> adminHeader}} <!-- Header partial -->
