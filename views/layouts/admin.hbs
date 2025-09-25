@@ -1,34 +1,49 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>{{title}}</title>
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="/adminAssets/imgs/theme/favicon.svg">
-
-  <!-- Admin CSS -->
-  <link href="/adminAssets/css/main.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminAssets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/adminAssets/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="dark">
-  <main>
-    {{#unless (eq title "Admin Login")}}
+  <div class="screen-overlay"></div>
+
+  {{#unless (eq title "Admin Login")}}
+    {{> adminSidebar}} <!-- Sidebar partial -->
+  {{/unless}}
+
+  <main >
+
+  {{#unless (eq title "Admin Login")}}
     {{> adminHeader}} <!-- Header partial -->
-    {{/unless}}
+  {{/unless}}
 
     {{{body}}}          <!-- Page content -->
 
-    {{#unless (eq title "Admin Login")}}
+  {{#unless (eq title "Admin Login")}}
     {{> adminFooter}}
-    {{/unless}}     <!-- Footer partial -->
-  </main>
+  {{/unless}}     <!-- Footer partial -->
 
-  <!-- JS -->
-  <script src="/adminAssets/js/vendors/jquery-3.6.0.min.js"></script>
-  <script src="/adminAssets/js/vendors/bootstrap.bundle.min.js"></script>
-  <script src="/adminAssets/js/vendors/jquery.fullscreen.min.js"></script>
-  <script src="/adminAssets/js/main.js" type="text/javascript"></script>
-</body>
+ </main>
+    <script src="/adminAssets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminAssets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminAssets/js/vendors/select2.min.js"></script>
+    <script src="/adminAssets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminAssets/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/adminAssets/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/adminAssets/js/main.js" type="text/javascript"></script>
+    <script src="/adminAssets/js/custom-chart.js" type="text/javascript"></script>
+  </body>
 </html>
