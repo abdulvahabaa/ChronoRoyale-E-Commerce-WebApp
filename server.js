@@ -56,10 +56,6 @@ app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/", userRoutes);
 
-app.get("/", (req, res) => {
-  res.render("user/userLogin", { title: "User Login" });
-});
-
 app.listen(PORT, () => {
   console.log(
     `process ID ${process.pid}:server running on PORT ${PORT} in dev mode`
