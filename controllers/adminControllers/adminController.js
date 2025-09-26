@@ -22,12 +22,22 @@ export const adminUsersListPage = async (req, res) => {
   try {
     const db = await connectToDatabase(process.env.DATABASE);
 
-    const usersData = await db
+    let usersData = await db
       .collection(collecion.USERS_COLLECTION)
       .find({})
       .toArray();
-    // console.log("userData:", userData);
-
+      
+      // format createdAt before sending to HBS
+      usersData = usersData.map(user => {
+        return {
+          ...user,
+          createdAtFormatted: new Date(user.createdAt)
+          .toLocaleDateString('en-GB') // dd/mm/yyyy
+        };
+      });
+      
+    console.log("userData:", usersData);
+    
     res.render("admin/users-list", {
       layout: "admin",
       title: "Admin - Users List",

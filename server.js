@@ -79,6 +79,9 @@ app.engine(
       upper: (str) => str.toUpperCase(),
       json: (context) => JSON.stringify(context),
       eq: (a, b) => a === b,
+      formatDate: (timestamp) => {
+        return new Date(timestamp).toLocaleDateString("en-GB"); // dd/mm/yyyy
+      },
     },
   })
 );

@@ -1,10 +1,10 @@
 <section class="content-main">
   <div class="content-header">
     <h2 class="content-title">Users list</h2>
-    {{! <div>
-      <a href="#" class="btn btn-primary"><i class="material-icons md-plus"></i>
+    {{!-- <div>
+      <a href="#" class="btn btn-primary"><i class="material-icons md-people"></i>
         Create new</a>
-    </div> }}
+    </div>  --}}
   </div>
   <div class="card mb-4">
     <header class="card-header">
@@ -43,73 +43,60 @@
             </tr>
           </thead>
           <tbody>
-        {{#each usersData}}
-            <tr>
-              <td width="40%">
-                <a href="#" class="itemside">
-                  <div class="left">
-                    <img
-                      src="/adminAssets/imgs/people/avatar3.jpg"
-                      class="img-sm img-avatar"
-                      alt="Userpic"
-                    />
-                  </div>
-                  <div class="info pl-3">
-                    <h6 class="mb-0 title">{{this.name}}</h6>
-                    <small class="text-muted">{{this.userId}}</small>
-                  </div>
-                </a>
-              </td>
-
-              <td>{{this.email}}</td>
-
-                <td>
-                {{#if this.active}}
-                    <span class="badge rounded-pill alert-success">test</span>
-                {{else}}
-                    <span class="badge rounded-pill alert-danger">test</span>
-                {{/if}}
-
+            {{#each usersData}}
+              <tr>
+                <td width="40%">
+                  <a href="#" class="itemside">
+                    <div class="left">
+                      <img
+                        src="/adminAssets/imgs/people/avatar3.jpg"
+                        class="img-sm img-avatar"
+                        alt="Userpic"
+                      />
+                    </div>
+                    <div class="info pl-3">
+                      <h6 class="mb-0 title">{{this.name}}</h6>
+                      <small class="text-muted">{{this.userId}}</small>
+                    </div>
+                  </a>
                 </td>
 
+                <td>{{this.email}}</td>
 
-              <td>{{this.createdAt}}</td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="btn btn-sm  btn-success rounded font-sm mt-15"
-                >View details</a>
-              </td>
-            </tr>
-        {{/each}}
-            {{! <tr>
-              <td width="40%">
-                <a href="#" class="itemside">
-                  <div class="left">
-                    <img
-                      src="/adminAssets/imgs/people/avatar4.jpg"
-                      class="img-sm img-avatar"
-                      alt="Userpic"
-                    />
-                  </div>
-                  <div class="info pl-3">
-                    <h6 class="mb-0 title">Eleanor Pena</h6>
-                    <small class="text-muted">Seller ID: #439</small>
-                  </div>
-                </a>
-              </td>
-              <td>eleanor2022@example.com</td>
-              <td><span
-                  class="badge rounded-pill alert-danger"
-                >Inactive</span></td>
-              <td>08.07.2022</td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="btn btn-sm btn-brand rounded font-sm mt-15"
-                >View details</a>
-              </td>
-            </tr> }}
+                <!-- Status badge -->
+                <td>
+                  {{#if this.isActive}}
+                    <span class="badge rounded-pill alert-success">Active</span>
+                  {{else}}
+                    <span
+                      class="badge rounded-pill alert-danger"
+                    >Inactive</span>
+                  {{/if}}
+                </td>
+
+                <td>{{this.createdAtFormatted}}</td>
+
+                <td class="text-end">
+                  {{#if this.isBlocked}}
+                    <a
+                      href="/admin/users/unblock/{{this._id}}"
+                      class="btn btn-sm btn-warning rounded font-sm mt-15"
+                    >
+                      Unblock
+                    </a>
+                  {{else}}
+                    <a
+                      href="/admin/users/block/{{this._id}}"
+                      class="btn btn-sm btn-danger rounded font-sm mt-15"
+                    >
+                      Block
+                    </a>
+                  {{/if}}
+                </td>
+
+              </tr>
+
+            {{/each}}
 
           </tbody>
         </table>
