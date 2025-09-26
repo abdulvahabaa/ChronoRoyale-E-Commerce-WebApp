@@ -1,8 +1,12 @@
 import express from "express";
 import { adminLogin } from "../controllers/adminControllers/adminAuth.js";
 import {
+  adminAddProductPage,
   adminDashbordPage,
   adminLoginPage,
+  adminOrdersListPage,
+  adminOrderViewPage,
+  adminProductsListPage,
   adminUsersListPage,
 } from "../controllers/adminControllers/adminController.js";
 
@@ -15,6 +19,14 @@ adminRoutes.post("/auth/login", adminLogin);
 adminRoutes.get("/dashboard", adminDashbordPage);
 
 adminRoutes.get("/users-list", adminUsersListPage);
+
+adminRoutes.get("/add-product", adminAddProductPage);
+
+adminRoutes.get("/products-list", adminProductsListPage);
+
+adminRoutes.get("/orders-list", adminOrdersListPage);
+
+adminRoutes.get("/order-view", adminOrderViewPage);
 
 // adminAuthRoutes.get("/test", (req, res) => {
 //     res.status(200).json({ message: "Admin login route working 🚀" });

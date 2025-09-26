@@ -5,8 +5,6 @@ export const adminLoginPage = async (req, res) => {
   console.log("Admin dashboard route working 🚀");
   res.render("admin/adminLogin", { layout: "admin", title: "Admin Login" });
 };
-
-// controllers/adminControllers/adminController.js
 export const adminDashbordPage = async (req, res) => {
   console.log("Admin dashboard route working 🚀");
   // const { success } = req.query; // if success=1 show toast
@@ -26,18 +24,19 @@ export const adminUsersListPage = async (req, res) => {
       .collection(collecion.USERS_COLLECTION)
       .find({})
       .toArray();
-      
-      // format createdAt before sending to HBS
-      usersData = usersData.map(user => {
-        return {
-          ...user,
-          createdAtFormatted: new Date(user.createdAt)
-          .toLocaleDateString('en-GB') // dd/mm/yyyy
-        };
-      });
-      
-    console.log("userData:", usersData);
-    
+
+    // format createdAt before sending to HBS
+    usersData = usersData.map((user) => {
+      return {
+        ...user,
+        createdAtFormatted: new Date(user.createdAt).toLocaleDateString(
+          "en-GB"
+        ), // dd/mm/yyyy
+      };
+    });
+
+    // console.log("userData:", usersData);
+
     res.render("admin/users-list", {
       layout: "admin",
       title: "Admin - Users List",
@@ -52,3 +51,36 @@ export const adminUsersListPage = async (req, res) => {
     });
   }
 };
+
+export const adminAddProductPage = async (req, res) => {
+  console.log("Admin AddProduct route working 🚀");
+  res.render("admin/add-product", {
+    layout: "admin",
+    title: "Admin - Add Product",
+  });
+};
+
+export const adminProductsListPage = async (req, res) => {
+  console.log("Admin ProductsList route working 🚀");
+  res.render("admin/products-list", {
+    layout: "admin",
+    title: "Admin - Products List",
+  });
+};
+
+export const adminOrdersListPage = async (req, res) => {
+  console.log("Admin OrdersList route working 🚀");
+  res.render("admin/orders-list", {
+    layout: "admin",
+    title: "Admin - Orders List",
+  });
+};
+
+export const adminOrderViewPage = async (req, res) => {
+  console.log("Admin OrderView route working 🚀");
+  res.render("admin/order-view", {
+    layout: "admin",
+    title: "Admin - Order View",
+  });
+};
+
