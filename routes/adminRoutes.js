@@ -1,5 +1,8 @@
 import express from "express";
-import { adminLogin } from "../controllers/adminControllers/adminAuth.js";
+import {
+  adminLogin,
+  adminLogout,
+} from "../controllers/adminControllers/adminAuth.js";
 import {
   adminAddProductPage,
   adminDashbordPage,
@@ -15,6 +18,8 @@ const adminRoutes = express.Router({ mergeParams: true });
 adminRoutes.get("/", adminLoginPage);
 
 adminRoutes.post("/auth/login", adminLogin);
+
+adminRoutes.get("/logout", adminLogout);
 
 adminRoutes.get("/dashboard", adminDashbordPage);
 

@@ -32,7 +32,19 @@ export const adminLogin = async (req, res) => {
     // console.log("Admin token:", token);
 
     // store token in cookie for future auth
-    res.cookie("adminToken", token, { httpOnly: true });
+    res.cookie("adminToken", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 2 * 60 * 60 * 1000, // 2 hours
+    });
+
+    res.cookie("mode", "dark", {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Lax",
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    });
 
     // redirect to dashboard with success message in query
     return res.redirect("/admin/dashboard");
@@ -43,5 +55,22 @@ export const adminLogin = async (req, res) => {
       title: "Admin Login",
       error: "Internal server error",
     });
+  }
+};
+
+export const adminLogout = (req, res) => {
+  try {
+    // Clear the token cookie on logout
+    res.clearCookie("adminToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+    });
+
+    // Redirect back to login page
+    return res.redirect("/admin");
+  } catch (err) {
+    console.error("Logout Error:", err.message);
+    return res.redirect("/admin");
   }
 };
