@@ -1,10 +1,10 @@
 <section class="content-main">
   <div class="content-header">
     <h2 class="content-title">Users list</h2>
-    {{!-- <div>
+    {{! <div>
       <a href="#" class="btn btn-primary"><i class="material-icons md-people"></i>
         Create new</a>
-    </div>  --}}
+    </div>  }}
   </div>
   <div class="card mb-4">
     <header class="card-header">
@@ -77,21 +77,26 @@
                 <td>{{this.createdAtFormatted}}</td>
 
                 <td class="text-end">
-                  {{#if this.isBlocked}}
-                    <a
-                      href="/admin/users/unblock/{{this._id}}"
-                      class="btn btn-sm btn-warning rounded font-sm mt-15"
-                    >
-                      Unblock
-                    </a>
-                  {{else}}
-                    <a
-                      href="/admin/users/block/{{this._id}}"
-                      class="btn btn-sm btn-danger rounded font-sm mt-15"
-                    >
-                      Block
-                    </a>
-                  {{/if}}
+                  <form
+                    action="/admin/block-user/{{this._id}}?status={{this.isActive}}"
+                    method="POST"
+                    style="display:inline;"
+                  >
+                    <input
+                      type="hidden"
+                      name="status"
+                      value="{{this.isActive}}"
+                    />
+                    {{#if this.isBlocked}}
+                      <button
+                        class="btn btn-sm btn-warning rounded font-sm mt-15"
+                      >Unblock</button>
+                    {{else}}
+                      <button
+                        class="btn btn-sm btn-danger rounded font-sm mt-15"
+                      >Block</button>
+                    {{/if}}
+                  </form>
                 </td>
 
               </tr>

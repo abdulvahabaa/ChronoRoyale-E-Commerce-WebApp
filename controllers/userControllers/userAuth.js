@@ -45,6 +45,7 @@ export const signup = async (req, res) => {
       createdAt: Date.now(),
       updatedAt: Date.now(),
       isActive: true,
+      isBlocked: false,
     });
 
     res.status(201).json({ message: "User created successfully" });

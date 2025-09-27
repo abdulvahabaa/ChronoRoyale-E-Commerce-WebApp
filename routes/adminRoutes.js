@@ -12,6 +12,7 @@ import {
   adminProductsListPage,
   adminUsersListPage,
 } from "../controllers/adminControllers/adminController.js";
+import { blockUnblockUser } from "../controllers/userControllers/userController.js";
 
 const adminRoutes = express.Router({ mergeParams: true });
 
@@ -24,6 +25,8 @@ adminRoutes.get("/logout", adminLogout);
 adminRoutes.get("/dashboard", adminDashbordPage);
 
 adminRoutes.get("/users-list", adminUsersListPage);
+
+adminRoutes.post("/block-user/:id", blockUnblockUser);
 
 adminRoutes.get("/add-product", adminAddProductPage);
 
