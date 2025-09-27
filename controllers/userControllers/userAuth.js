@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import collecion from "../../config/collection.js";
+import collection from "../../config/collection.js";
 import connectToDatabase from "../../config/db.js";
 import { v7 as uuidv7 } from "uuid";
 
@@ -19,7 +19,7 @@ export const signup = async (req, res) => {
 
     const db = await connectToDatabase(process.env.DATABASE);
     const user = await db
-      .collection(collecion.USERS_COLLECTION)
+      .collection(collection.USERS_COLLECTION)
       .findOne({ email });
 
     if (user) {
@@ -30,7 +30,7 @@ export const signup = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt);
     const userId = uuidv7();
 
-    await db.collection(collecion.USERS_COLLECTION).insertOne({
+    await db.collection(collection.USERS_COLLECTION).insertOne({
       userId,
       name,
       email,
@@ -70,7 +70,7 @@ export const login = async (req, res) => {
 
     const db = await connectToDatabase(process.env.DATABASE);
     const user = await db
-      .collection(collecion.USERS_COLLECTION)
+      .collection(collection.USERS_COLLECTION)
       .findOne({ email });
 
     if (!user) {

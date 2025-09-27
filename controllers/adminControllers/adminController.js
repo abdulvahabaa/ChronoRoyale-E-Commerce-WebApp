@@ -1,4 +1,4 @@
-import collecion from "../../config/collection.js";
+import collection from "../../config/collection.js";
 import connectToDatabase from "../../config/db.js";
 
 export const adminLoginPage = async (req, res) => {
@@ -21,7 +21,7 @@ export const adminUsersListPage = async (req, res) => {
     const db = await connectToDatabase(process.env.DATABASE);
 
     let usersData = await db
-      .collection(collecion.USERS_COLLECTION)
+      .collection(collection.USERS_COLLECTION)
       .find({})
       .toArray();
 
