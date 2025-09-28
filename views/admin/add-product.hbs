@@ -1,183 +1,154 @@
 <section class="content-main">
-  <div class="row">
-    <div class="col-9">
-      <div class="content-header">
-        <h2 class="content-title">Add New Product</h2>
-        <div>
-          <button
-            class="btn btn-light rounded font-sm mr-5 text-body hover-up"
-          >Save to draft</button>
-          <button class="btn btn-md rounded font-sm hover-up">Publich</button>
+  <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+    <div class="row">
+      <!-- Left side -->
+      <div class="col-9">
+        <div class="content-header">
+          <h2 class="content-title">Add New Product</h2>
+          <div>
+            <button
+              type="button"
+              class="btn btn-light rounded font-sm mr-5 text-body hover-up"
+            >
+              Save to draft
+            </button>
+            <button
+              type="submit"
+              class="btn btn-md rounded font-sm hover-up"
+            >Publish</button>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="card mb-4">
-        <div class="card-header">
-          <h4>Basic</h4>
-        </div>
-        <div class="card-body">
-          <form>
+
+        <!-- Basic Info -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Basic</h4>
+          </div>
+          <div class="card-body">
+            <!-- Product Name -->
             <div class="mb-4">
-              <label for="product_name" class="form-label">Product title</label>
+              <label for="name" class="form-label">Product Name</label>
               <input
                 type="text"
+                name="name"
+                id="name"
                 placeholder="Type here"
                 class="form-control"
-                id="product_name"
               />
             </div>
-            <div class="mb-4">
-              <label class="form-label">Full description</label>
-              <textarea
-                placeholder="Type here"
-                class="form-control"
-                rows="4"
-              ></textarea>
+
+            <!-- Brand, Category, Status -->
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="brand" class="form-label">Brand</label>
+                  <select name="brand" id="brand" class="form-control">
+                    <option value="">Select brand</option>
+                    <option value="Brand1">Brand 1</option>
+                    <option value="Brand2">Brand 2</option>
+                    <option value="Brand3">Brand 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="category" class="form-label">Category</label>
+                  <select name="category" id="category" class="form-control">
+                    <option value="">Select category</option>
+                    <option value="Category1">Category 1</option>
+                    <option value="Category2">Category 2</option>
+                    <option value="Category3">Category 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="status" class="form-label">Status</label>
+                  <select name="status" id="status" class="form-control">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
             </div>
+            <!-- Brand, Category, Status end -->
             <div class="row">
               <div class="col-lg-4">
                 <div class="mb-4">
                   <label class="form-label">Regular price</label>
-                  <div class="row gx-2">
-                    <input placeholder="$" type="text" class="form-control" />
-                  </div>
+                  <input
+                    name="price"
+                    placeholder="$"
+                    type="text"
+                    class="form-control"
+                  />
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="mb-4">
                   <label class="form-label">Promotional price</label>
-                  <input placeholder="$" type="text" class="form-control" />
+                  <input
+                    name="discountPrice"
+                    placeholder="$"
+                    type="text"
+                    class="form-control"
+                  />
                 </div>
               </div>
               <div class="col-lg-4">
-                <label class="form-label">Currency</label>
-                <select class="form-select">
-                  <option> USD </option>
-                  <option> EUR </option>
-                  <option> RUBL </option>
-                </select>
+                <label class="form-label">Stock</label>
+                <input
+                  name="stock"
+                  placeholder="Qty"
+                  type="text"
+                  class="form-control"
+                />
               </div>
             </div>
             <div class="mb-4">
-              <label class="form-label">Tax rate</label>
+              <label for="shortDesc" class="form-label">Short Description</label>
               <input
                 type="text"
-                placeholder="%"
+                name="shortDesc"
+                id="shortDesc"
+                placeholder="Short description"
                 class="form-control"
-                id="product_name"
-              />
-            </div>
-            <label class="form-check mb-4">
-              <input class="form-check-input" type="checkbox" value="" />
-              <span class="form-check-label"> Make a template </span>
-            </label>
-          </form>
-        </div>
-      </div>
-      <!-- card end// -->
-      <div class="card mb-4">
-        <div class="card-header">
-          <h4>Shipping</h4>
-        </div>
-        <div class="card-body">
-          <form>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="mb-4">
-                  <label for="product_name" class="form-label">Width</label>
-                  <input
-                    type="text"
-                    placeholder="inch"
-                    class="form-control"
-                    id="product_name"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="mb-4">
-                  <label for="product_name" class="form-label">Height</label>
-                  <input
-                    type="text"
-                    placeholder="inch"
-                    class="form-control"
-                    id="product_name"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="mb-4">
-              <label for="product_name" class="form-label">Weight</label>
-              <input
-                type="text"
-                placeholder="gam"
-                class="form-control"
-                id="product_name"
               />
             </div>
             <div class="mb-4">
-              <label for="product_name" class="form-label">Shipping fees</label>
-              <input
-                type="text"
-                placeholder="$"
+              <label for="description" class="form-label">Full description</label>
+              <textarea
+                name="description"
+                id="description"
+                placeholder="Type here"
                 class="form-control"
-                id="product_name"
-              />
+                rows="4"
+              ></textarea>
             </div>
-          </form>
-        </div>
-      </div>
-      <!-- card end// -->
-    </div>
-    <div class="col-lg-3">
-      <div class="card mb-4">
-        <div class="card-header">
-          <h4>Media</h4>
-        </div>
-        <div class="card-body">
-          <div class="input-upload">
-            <img src="/adminAssets/imgs/theme/upload.svg" alt="" />
-            <input class="form-control" type="file" />
+
           </div>
         </div>
-      </div>
-      <!-- card end// -->
-      <div class="card mb-4">
-        <div class="card-header">
-          <h4>Organization</h4>
-        </div>
-        <div class="card-body">
-          <div class="row gx-2">
-            <div class="col-sm-6 mb-3">
-              <label class="form-label">Category</label>
-              <select class="form-select">
-                <option> Automobiles </option>
-                <option> Home items </option>
-                <option> Electronics </option>
-                <option> Smartphones </option>
-                <option> Sport items </option>
-                <option> Baby and Tous </option>
-              </select>
-            </div>
-            <div class="col-sm-6 mb-3">
-              <label class="form-label">Sub-category</label>
-              <select class="form-select">
-                <option> Nissan </option>
-                <option> Honda </option>
-                <option> Mercedes </option>
-                <option> Chevrolet </option>
-              </select>
+        <!-- card end// -->
+
+        <!-- Media -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="mb-4">
+              <label class="form-label">Thumbnail</label>
+              <input class="form-control" type="file" name="thumbnail" />
             </div>
             <div class="mb-4">
-              <label for="product_name" class="form-label">Tags</label>
-              <input type="text" class="form-control" />
+              <label class="form-label">Product Images</label>
+              <input class="form-control" type="file" name="images" multiple />
             </div>
           </div>
-          <!-- row.// -->
         </div>
+        <!-- card end// -->
       </div>
-      <!-- card end// -->
     </div>
-  </div>
+  </form>
 </section>
 <!-- content-main end// -->
