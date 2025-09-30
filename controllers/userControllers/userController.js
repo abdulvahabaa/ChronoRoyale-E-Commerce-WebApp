@@ -1,26 +1,31 @@
 import connectToDatabase from "../../config/db.js";
 import collection from "../../config/collection.js";
 import { ObjectId } from "mongodb";
+import { bannerData, brandData } from "../../data/index.js";
 export const landingPage = async (req, res) => {
   console.log("User Landing route working 🚀");
-  
-  res.render("user/home", { title: "Home - ChronoRoyale" });
+
+  res.render("user/home", {
+    title: "Home - ChronoRoyale",
+    banners: bannerData,
+    brands: brandData
+  });
 };
 
 export const loginPage = async (req, res) => {
   console.log(" Login page route working 🚀");
-  
+
   res.render("user/login", { title: "Login - ChronoRoyale" });
 };
 
 export const signupPage = async (req, res) => {
   console.log("Signup page route working 🚀");
-  
+
   res.render("user/signup", { title: "Signup - ChronoRoyale" });
 };
 export const productsPage = async (req, res) => {
   console.log("productsPage page route working 🚀");
-  
+
   res.render("user/products", { title: "Product's List - ChronoRoyale" });
 };
 
@@ -47,10 +52,9 @@ export const blockUnblockUser = async (req, res) => {
       updatedAt: new Date(),
     };
 
-    const result = await db.collection(collection.USERS_COLLECTION).updateOne(
-      { _id: new ObjectId(userId) },
-      { $set: updateData }
-    );
+    const result = await db
+      .collection(collection.USERS_COLLECTION)
+      .updateOne({ _id: new ObjectId(userId) }, { $set: updateData });
 
     if (result.modifiedCount === 0) {
       return res.status(404).json({ message: "User not found" });
