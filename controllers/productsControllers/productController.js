@@ -1,10 +1,13 @@
+
+import { v7 as uuidv7 } from "uuid";
 import connectToDatabase from "../../config/db.js";
-import collection from "../../config/collection";
+import collection from "../../config/collection.js";
 
 export const addProduct = async (req, res) => {
-    console.log("Add Product route working 🚀");
+    console.log("Add Product logic route working 🚀");
   try {
     const data = req.body;
+    console.log(data)
 
     const productData = {
       name: data.name,
@@ -16,21 +19,23 @@ export const addProduct = async (req, res) => {
       discountPrice: data.discountPrice,
       stock: data.stock,
       rating: "",
-      picturePath: data.images,
-      thumbnail: data.thumbnail,
+      picturePath: "",
+      thumbnail: "",
       status: data.status,
-      createdAt: Date().now(),
-      updatedAt: Date().now(),
+      createdAt: Math.floor(Date.now() / 1000),
+      updatedAt:  Math.floor(Date.now() / 1000),
       isDelete: false,
     };
 
     console.log(productData);
 
-    // const db = await connectToDatabase(process.env.DATABASE);
-    // const result = await db
-    //   .collection(collection.PRODUCTS_COLLECTION)
-    //   .insertOne();
-    // console.log(result);
+    const db = await connectToDatabase(process.env.DATABASE);
+    const result = await db
+      .collection(collection.PRODUCTS_COLLECTION)
+      .insertOne(productData);
+    console.log(result);
+
+     return res.redirect("/admin/products-list");
   } catch (error) {
     console.log(error);
   }
