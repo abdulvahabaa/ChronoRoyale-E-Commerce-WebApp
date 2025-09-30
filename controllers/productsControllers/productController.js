@@ -22,8 +22,8 @@ export const addProduct = async (req, res) => {
       picturePath: "",
       thumbnail: "",
       status: data.status,
-      createdAt: Math.floor(Date.now() / 1000),
-      updatedAt:  Math.floor(Date.now() / 1000),
+      createdAt: new Date(),
+      updatedAt:  new Date(),
       isDelete: false,
     };
 

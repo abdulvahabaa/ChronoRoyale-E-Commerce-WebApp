@@ -47,14 +47,12 @@ app.use(
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-/* ROUTES WITH FILES */
-// app.post("/auth/register",upload.single("picture"),register);
-// app.post("/posts",upload.single("picture"),createPost);
-
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/", userRoutes);
+
+
 
 app.listen(PORT, () => {
   console.log(
