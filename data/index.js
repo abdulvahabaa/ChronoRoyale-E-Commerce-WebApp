@@ -6,7 +6,7 @@ export const bannerData = [
     highlight: "Premium Watches",
     description: "Discover timeless elegance with our curated premium watches.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/slider-1.png",
+    image: "/userAssets/imgs/slider/slider-1.jpg",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const bannerData = [
     highlight: "Heritage Series",
     description: "Own a masterpiece of precision and luxury. Limited pieces only.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/watch-banner-2.png",
+    image: "/userAssets/imgs/slider/slider-1.jpg",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const bannerData = [
     highlight: "Luxury Watches",
     description: "Save big on selected premium watches. Limited time only.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/watch-banner-3.png",
+    image: "/userAssets/imgs/slider/slider-1.jpg",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const bannerData = [
     highlight: "Luxury & Style",
     description: "Experience the latest in modern luxury watch designs.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/watch-banner-4.png",
+    image: "/userAssets/imgs/slider/slider-1.jpg",
   },
   {
     id: 5,
@@ -42,59 +42,59 @@ export const bannerData = [
     highlight: "For Gentlemen & Ladies",
     description: "Perfect blend of tradition and modern craftsmanship.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/watch-banner-5.png",
+    image: "/userAssets/imgs/slider/slider-1.jpg",
   },
 ];
 
 export const brandData = [
   {
     name: "Rolex",
-    image: "/userAssets/imgs/brands/rolex.jpg",
+    image: "/userAssets/imgs/Logos/rolex logo.jpg",
     link: "/shop-grid-right.html",
   },
   {
     name: "Omega",
-    image: "/userAssets/imgs/brands/omega.jpg",
+    image: "/userAssets/imgs/Logos/Omega logo.png",
     link: "/shop-grid-right.html",
   },
   {
     name: "Tag Heuer",
-    image: "/userAssets/imgs/brands/tagheuer.jpg",
+    image: "/userAssets/imgs/Logos/Tag Heuer logo.png",
     link: "/shop-grid-right.html",
   },
   {
     name: "Patek Philippe",
-    image: "/userAssets/imgs/brands/patek.jpg",
+    image: "/userAssets/imgs/logos/Patek Philippe logo.png",
     link: "/shop-grid-right.html",
   },
   {
     name: "Audemars Piguet",
-    image: "/userAssets/imgs/brands/audemars.jpg",
+    image: "/userAssets/imgs/Logos/Audemars Piguet logo.jpg",
     link: "/shop-grid-right.html",
   },
   {
     name: "Cartier",
-    image: "/userAssets/imgs/brands/cartier.jpg",
+    image: "/userAssets/imgs/Logos/Cartier logo.png",
     link: "/shop-grid-right.html",
   },
   {
     name: "Breitling",
-    image: "/userAssets/imgs/brands/breitling.jpg",
+    image: "/userAssets/imgs/Logos/Breitling logo.png",
     link: "/shop-grid-right.html",
   },
   {
     name: "Hublot",
-    image: "/userAssets/imgs/brands/hublot.jpg",
+    image: "/userAssets/imgs/Logos/Hublot logo.png",
     link: "/shop-grid-right.html",
   },
   {
     name: "Longines",
-    image: "/userAssets/imgs/brands/longines.jpg",
+    image: "/userAssets/imgs/Logos/Longines logo.png",
     link: "/shop-grid-right.html",
   },
   {
     name: "IWC Schaffhausen",
-    image: "/userAssets/imgs/brands/iwc.jpg",
+    image: "/userAssets/imgs/Logos/IWC Schaffhausen logo.png",
     link: "/shop-grid-right.html",
   },
 ];
