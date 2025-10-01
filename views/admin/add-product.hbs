@@ -1,5 +1,5 @@
 <section class="content-main">
-  <form action="/admin/add-product" method="POST" >
+  <form action="/admin/add-product" method="POST" enctype="multipart/form-data" >
     <div class="row">
       <!-- Left side -->
       <div class="col-9">
@@ -131,21 +131,21 @@
         <!-- card end// -->
 
         <!-- Media -->
-        {{!-- <div class="card mb-4">
+        <div class="card mb-4">
           <div class="card-header">
             <h4>Media</h4>
           </div>
           <div class="card-body">
-            <div class="mb-4">
+            {{!-- <div class="mb-4">
               <label class="form-label">Thumbnail</label>
               <input class="form-control" type="file" name="thumbnail" />
-            </div>
+            </div> --}}
             <div class="mb-4">
               <label class="form-label">Product Images</label>
-              <input class="form-control" type="file" name="images" multiple />
+              <input class="form-control" type="file" name="productImages" multiple />
             </div>
           </div>
-        </div> --}}
+        </div>
         <!-- card end// -->
       </div>
     </div>

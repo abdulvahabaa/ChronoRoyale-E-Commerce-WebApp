@@ -1,13 +1,16 @@
-
 import { v7 as uuidv7 } from "uuid";
 import connectToDatabase from "../../config/db.js";
 import collection from "../../config/collection.js";
 
 export const addProduct = async (req, res) => {
-    console.log("Add Product logic route working 🚀");
+  console.log("Add Product logic route working 🚀");
   try {
     const data = req.body;
-    console.log(data)
+    console.log(data);
+
+    console.log(req.files); // array of files
+    const pictures = req.files.map((file) => `/userAssets/pictures/${file.filename}`);
+    console.log(pictures)
 
     const productData = {
       name: data.name,
@@ -19,11 +22,11 @@ export const addProduct = async (req, res) => {
       discountPrice: data.discountPrice,
       stock: data.stock,
       rating: "",
-      picturePath: "",
+      picturePath: pictures,
       thumbnail: "",
       status: data.status,
       createdAt: new Date(),
-      updatedAt:  new Date(),
+      updatedAt: new Date(),
       isDelete: false,
     };
 
@@ -35,7 +38,7 @@ export const addProduct = async (req, res) => {
       .insertOne(productData);
     console.log(result);
 
-     return res.redirect("/admin/products-list");
+    return res.redirect("/admin/products-list");
   } catch (error) {
     console.log(error);
   }

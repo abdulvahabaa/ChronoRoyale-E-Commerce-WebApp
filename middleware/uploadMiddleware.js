@@ -2,12 +2,11 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
-// storage folder dynamic based on type
+// Storage config generator
 const storage = (folder) =>
   multer.diskStorage({
     destination: (req, file, cb) => {
       const dir = path.join("public", folder);
-      // make folder if doesn't exist
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }
@@ -15,23 +14,43 @@ const storage = (folder) =>
     },
     filename: (req, file, cb) => {
       const ext = path.extname(file.originalname);
-      const name = file.fieldname + "-" + Date.now() + ext;
-      cb(null, name);
+      const base = path.basename(file.originalname, ext);
+      cb(null, `${file.fieldname}-${Date.now()}${ext}`);
     },
   });
 
+  
+
 /**
- * uploadFiles(folder, type, maxCount)
- * @param {string} folder - folder name inside public (adminAssets / userAssets)
- * @param {string} type - 'single' or 'multiple'
- * @param {number} maxCount - for multiple files max count
+ * uploadFiles
+ * @param {string} folder - folder inside public (e.g. "adminAssets/uploads")
+ * @param {string} type - 'single' | 'multiple' | 'fields'
+ * @param {string} fieldName - field name in form (default: "file")
+ * @param {number} maxCount - for multiple files max count (default: 1)
+ * @param {Array} fields - for multiple different field names [{ name: "thumbnail", maxCount: 1 }, { name: "images", maxCount: 4 }]
  */
-export const uploadFiles = (folder, type = "single", maxCount = 1) => {
+
+
+export const uploadFiles = (
+  folder,
+  type = "single",
+  fieldName = "file",
+  maxCount = 1,
+  fields = []
+) => {
   const multerStorage = storage(folder);
   const upload = multer({ storage: multerStorage });
 
-  if (type === "single") return upload.single("picture"); // req.file
-  if (type === "multiple") return upload.array("pictures", maxCount); // req.files
-
-  throw new Error("Invalid upload type, must be 'single' or 'multiple'");
+  switch (type) {
+    case "single":
+      return upload.single(fieldName); // req.file
+    case "multiple":
+      return upload.array(fieldName, maxCount); // req.files
+    case "fields":
+      return upload.fields(fields); // req.files.<fieldName>
+    default:
+      throw new Error(
+        "Invalid upload type: choose 'single', 'multiple' or 'fields'"
+      );
+  }
 };
