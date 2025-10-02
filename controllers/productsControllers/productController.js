@@ -43,3 +43,16 @@ export const addProduct = async (req, res) => {
     console.log(error);
   }
 };
+
+export const productViewPage = async (req, res) => {
+  console.log("Product view page route working 🚀");
+ try {
+
+  res.render("user/productView", { title: "Product View - ChronoRoyale" });
+  
+ } catch (error) {
+  console.log(error);
+  
+ }
+}
+
