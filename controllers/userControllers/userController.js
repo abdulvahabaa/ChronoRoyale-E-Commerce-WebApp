@@ -2,14 +2,50 @@ import connectToDatabase from "../../config/db.js";
 import collection from "../../config/collection.js";
 import { ObjectId } from "mongodb";
 import { bannerData, brandData } from "../../data/index.js";
+import { getProductsData } from "../productsControllers/productController.js";
 export const landingPage = async (req, res) => {
   console.log("User Landing route working 🚀");
 
-  res.render("user/home", {
-    title: "Home - ChronoRoyale",
-    banners: bannerData,
-    brands: brandData
-  });
+  try {
+    // Featured random products (6)
+    const featuredProducts = await getProductsData({
+      sort: "random",
+      limit: 12,
+    });
+
+    // Latest men’s watches (4)
+    const latestMen = await getProductsData({
+      category: "men",
+      sort: "latest",
+      limit: 10,
+    });
+
+    // Latest women’s watches (4)
+    const latestWomen = await getProductsData({
+      category: "women",
+      sort: "latest",
+      limit: 10,
+    });
+
+    const newArrivals = await getProductsData({
+      sort: "latest",
+      limit: 15,
+    });
+
+    // Render homepage with dynamic products
+    res.render("user/home", {
+      title: "Home - ChronoRoyale",
+      banners: bannerData,
+      brands: brandData,
+      featured: featuredProducts,
+      men: latestMen,
+      women: latestWomen,
+      newProducts: newArrivals,
+    });
+  } catch (error) {
+    console.error("❌ Landing page error:", error);
+    res.status(500).send("Error loading home page");
+  }
 };
 
 export const loginPage = async (req, res) => {
@@ -70,5 +106,3 @@ export const blockUnblockUser = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
-
