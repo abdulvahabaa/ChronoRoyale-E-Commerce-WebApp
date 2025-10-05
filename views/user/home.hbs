@@ -154,12 +154,12 @@
                       <a href="shop-product-right.html">
                         <img
                           class="default-img"
-                          src="/userAssets/imgs/shop/product-1-1.jpg"
+                          src="{{this.picturePath.[0]}}"
                           alt=""
                         />
                         <img
                           class="hover-img"
-                          src="/userAssets/imgs/shop/product-1-2.jpg"
+                          src="{{this.picturePath.[1]}}"
                           alt=""
                         />
                       </a>
@@ -185,10 +185,10 @@
                   </div>
                   <div class="product-content-wrap">
                     <div class="product-category">
-                      <a href="shop-grid-right.html">Clothing</a>
+                      <a href="shop-grid-right.html">{{this.brand}}</a>
                     </div>
                     <h2>
-                      <a href="shop-product-right.html">Colorful Pattern Shirts</a>
+                      <a href="shop-product-right.html">{{this.name}}</a>
                     </h2>
                     <div class="rating-result" title="90%">
                       <span>
@@ -196,8 +196,8 @@
                       </span>
                     </div>
                     <div class="product-price">
-                      <span>$238.85 </span>
-                      <span class="old-price">$245.8</span>
+                      <span>{{this.discountPrice}}</span>
+                      <span class="old-price">{{this.price}}</span>
                     </div>
                     <div class="product-action-1 show">
                       <a

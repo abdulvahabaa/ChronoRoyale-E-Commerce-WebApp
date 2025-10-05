@@ -13,6 +13,8 @@ export const landingPage = async (req, res) => {
       limit: 12,
     });
 
+    console.log(featuredProducts[0])
+
     // Latest men’s watches (4)
     const latestMen = await getProductsData({
       category: "men",
