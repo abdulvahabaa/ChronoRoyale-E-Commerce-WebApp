@@ -13,6 +13,6 @@ userRoutes.get("/signup", signupPage);
 
 userRoutes.get("/products", productsPage);
 
-userRoutes.get("/product-view", productViewPage);
+userRoutes.get("/products/:id", productViewPage);
 
 export default userRoutes;
