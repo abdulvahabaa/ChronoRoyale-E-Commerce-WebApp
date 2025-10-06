@@ -6,7 +6,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import multer from "multer";
 import { engine } from "express-handlebars";
-import authRoutes from "./routes/authRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 
@@ -40,7 +39,6 @@ app.use(
 );
 
 /* ROUTES */
-app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/", userRoutes);
 
