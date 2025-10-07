@@ -12,12 +12,12 @@
             <div class="heading_s1">
               <h3 class="mb-30 text-center">Create an Account</h3>
             </div>
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" action="/signup-user">
               <div class="form-group mb-3">
                 <input
                   type="text"
                   required
-                  name="username"
+                  name="name"
                   placeholder="Username"
                   class="form-control"
                 />
@@ -40,7 +40,7 @@
                   class="form-control"
                 />
               </div>
-              <div class="form-group mb-3">
+              {{! <div class="form-group mb-3">
                 <input
                   required
                   type="password"
@@ -48,8 +48,8 @@
                   placeholder="Confirm Password"
                   class="form-control"
                 />
-              </div>
-              <div class="form-group mb-3">
+              </div> }}
+              {{! <div class="form-group mb-3">
                 <label class="form-label">Profile Picture (Optional)</label>
                 <input
                   type="file"
@@ -57,7 +57,7 @@
                   accept="image/*"
                   class="form-control"
                 />
-              </div>
+              </div> }}
               {{! <div class="login_footer form-group mb-3">
                   <div class="custome-checkbox">
                     <input class="form-check-input" type="checkbox" name="checkbox" id="termsCheck" />

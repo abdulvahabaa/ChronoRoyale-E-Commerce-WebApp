@@ -47,7 +47,8 @@ export const signup = async (req,res) => {
       isBlocked: false,
     });
 
-    res.status(201).json({ message: "User created successfully" });
+    res.redirect("/login");
+
   } catch (err) {
     console.error("Signup Error:", err.message);
     res.status(500).json({ error: "Internal server error" });
