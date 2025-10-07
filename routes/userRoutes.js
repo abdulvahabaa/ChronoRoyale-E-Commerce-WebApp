@@ -11,6 +11,8 @@ userRoutes.get("/login", loginPage);
 
 userRoutes.get("/signup", signupPage);
 
+userRoutes.post("/signup-user", signupPage);
+
 userRoutes.get("/products", productsPage);
 
 userRoutes.get("/products/:id", productViewPage);

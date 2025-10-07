@@ -4,9 +4,9 @@ import collection from "../../config/collection.js";
 import connectToDatabase from "../../config/db.js";
 import { v7 as uuidv7 } from "uuid";
 
-export const signup = async (req, res) => {
-  // console.log("signup>>>>>>>>>");
-  // console.log(req.body);
+export const signup = async (req,res) => {
+  console.log("signup>>>>>>>>>");
+  console.log(req.body);
   try {
     const { name, email, password } = req.body;
 
@@ -37,7 +37,6 @@ export const signup = async (req, res) => {
       password: passwordHash,
       phone: "",
       avatar: "",
-      role: "customer",
       addresses: [],
       orders: [],
       wishlist: [],

@@ -4,7 +4,6 @@ import cors from "cors";
 import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
-import multer from "multer";
 import { engine } from "express-handlebars";
 import adminRoutes from "./routes/adminRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -42,8 +41,6 @@ app.use(
 app.use("/admin", adminRoutes);
 app.use("/", userRoutes);
 
-
-
 app.listen(PORT, () => {
   console.log(
     `process ID ${process.pid}:server running on PORT ${PORT} in dev mode`
@@ -63,6 +60,7 @@ app.engine(
       upper: (str) => str.toUpperCase(),
       json: (context) => JSON.stringify(context),
       eq: (a, b) => a === b,
+      or: (a, b) => a || b,
       formatDate: (timestamp) => {
         return new Date(timestamp).toLocaleDateString("en-GB"); // dd/mm/yyyy
       },

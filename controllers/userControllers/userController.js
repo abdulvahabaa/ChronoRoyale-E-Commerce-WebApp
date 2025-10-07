@@ -3,6 +3,7 @@ import collection from "../../config/collection.js";
 import { ObjectId } from "mongodb";
 import { bannerData, brandData } from "../../data/index.js";
 import { getProductsData } from "../productsControllers/productController.js";
+import { signup } from "./userAuth.js";
 export const landingPage = async (req, res) => {
   console.log("User Landing route working 🚀");
 
@@ -59,7 +60,16 @@ export const loginPage = async (req, res) => {
 export const signupPage = async (req, res) => {
   console.log("Signup page route working 🚀");
 
-  res.render("user/signup", { title: "Signup - ChronoRoyale" });
+  try {
+
+    
+    signup
+     res.render("user/signup", { title: "Signup - ChronoRoyale" });
+  } catch (error) {
+    console.log(error);
+  }
+
+ 
 };
 export const productsPage = async (req, res) => {
   console.log("productsPage page route working 🚀");
