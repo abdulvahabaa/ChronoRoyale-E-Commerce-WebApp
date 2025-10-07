@@ -4,17 +4,16 @@ import collection from "../../config/collection.js";
 import connectToDatabase from "../../config/db.js";
 import { v7 as uuidv7 } from "uuid";
 
-export const signup = async (req,res) => {
-  console.log("signup>>>>>>>>>");
-  console.log(req.body);
+export const signup = async (req, res) => {
+  console.log("signup>>>>>>>>>", req.body);
   try {
     const { name, email, password } = req.body;
 
-    // Simple validation instead of Zod
     if (!name || !email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Name, email and password are required." });
+      return res.render("user/signup", {
+        title: "Signup - ChronoRoyale",
+        error: "Name, email, and password are required.",
+      });
     }
 
     const db = await connectToDatabase(process.env.DATABASE);
@@ -23,7 +22,10 @@ export const signup = async (req,res) => {
       .findOne({ email });
 
     if (user) {
-      return res.status(400).json({ message: "User already exists." });
+      return res.render("user/signup", {
+        title: "Signup - ChronoRoyale",
+        error: "User already exists. Please login instead.",
+      });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -47,25 +49,28 @@ export const signup = async (req,res) => {
       isBlocked: false,
     });
 
+    // ✅ Redirect on success
     res.redirect("/login");
-
   } catch (err) {
     console.error("Signup Error:", err.message);
-    res.status(500).json({ error: "Internal server error" });
+    res.render("user/signup", {
+      title: "Signup - ChronoRoyale",
+      error: "Something went wrong. Please try again later.",
+    });
   }
 };
 
 export const login = async (req, res) => {
-  console.log("login>>>>>>>>>");
-  console.log(req.body);
+  console.log("login>>>>>>>>>", req.body);
   try {
     const { email, password } = req.body;
 
-    // Simple validation instead of Zod
+    // Basic validation
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required." });
+      return res.render("user/login", {
+        title: "Login - ChronoRoyale",
+        error: "Email and password are required.",
+      });
     }
 
     const db = await connectToDatabase(process.env.DATABASE);
@@ -74,23 +79,35 @@ export const login = async (req, res) => {
       .findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ message: "User does not exist." });
+      return res.render("user/login", {
+        title: "Login - ChronoRoyale",
+        error: "User does not exist. Please sign up first.",
+      });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials." });
+      return res.render("user/login", {
+        title: "Login - ChronoRoyale",
+        error: "Invalid credentials. Please try again.",
+      });
     }
 
     const token = jwt.sign({ id: user.userId }, process.env.JWT_SECRET, {
-      expiresIn: "2h", // Token expiration time
+      expiresIn: "2h",
     });
 
     const { password: _, ...userWithoutPassword } = user;
 
-    res.status(200).json({ token, user: userWithoutPassword });
+    // TODO: optionally store token in cookie or session
+    // res.cookie("token", token, { httpOnly: true });
+
+    res.redirect("/");
   } catch (err) {
     console.error("Login Error:", err.message);
-    res.status(500).json({ error: "Internal server error" });
+    res.render("user/login", {
+      title: "Login - ChronoRoyale",
+      error: "Something went wrong. Please try again later.",
+    });
   }
 };

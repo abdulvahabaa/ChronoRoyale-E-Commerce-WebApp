@@ -10,13 +10,15 @@ import { productViewPage } from "../controllers/productsControllers/productContr
 
 const userRoutes = express.Router({ mergeParams: true });
 
-userRoutes.get("/", landingPage);
-
 userRoutes.get("/login", loginPage);
+
+userRoutes.post("/login-user", login);
 
 userRoutes.get("/signup", signupPage);
 
 userRoutes.post("/signup-user", signup);
+
+userRoutes.get("/", landingPage);
 
 userRoutes.get("/products", productsPage);
 

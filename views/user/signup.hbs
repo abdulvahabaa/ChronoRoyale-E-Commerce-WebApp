@@ -12,6 +12,13 @@
             <div class="heading_s1">
               <h3 class="mb-30 text-center">Create an Account</h3>
             </div>
+            
+            {{#if error}}
+              <div class="alert alert-danger text-center" role="alert">
+                {{error}}
+              </div>
+            {{/if}}
+
             <form method="post" action="/signup-user">
               <div class="form-group mb-3">
                 <input
@@ -69,13 +76,12 @@
                 <button
                   type="submit"
                   class="btn btn-fill-out btn-block hover-up w-100"
-                  name="signup"
-                >Submit &amp; Register</button>
+                >Sign Up</button>
               </div>
             </form>
             <div class="text-center mt-3">
               <small class="text-muted">Already have an account?</small>
-              <a href="/login" class="ml-2">Sign in</a>
+              <a href="/login" class="ml-2">Log in</a>
             </div>
           </div>
         </div>
