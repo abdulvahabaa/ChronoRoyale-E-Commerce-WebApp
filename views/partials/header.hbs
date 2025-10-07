@@ -32,10 +32,23 @@
         <div class="col-xl-3 col-lg-4">
           <div class="header-info header-info-right">
             <ul>
-              <li>
-                <i class="fi-rs-user"></i>
-                <a href="/login">Log In / Sign Up</a>
-              </li>
+              {{#if loggedInUser}}
+                <!-- If user is logged in -->
+                <li>
+                  <i class="fi-rs-user"></i>
+                  <span>Welcome, {{loggedInUser.name}}</span>
+                </li>
+                <li>
+                  <i class="fi-rs-logout"></i>
+                  <a href="/logout">Logout</a>
+                </li>
+              {{else}}
+                <!-- If user is not logged in -->
+                <li>
+                  <i class="fi-rs-user"></i>
+                  <a href="/login">Log In / Sign Up</a>
+                </li>
+              {{/if}}
             </ul>
           </div>
         </div>

@@ -93,14 +93,21 @@ export const login = async (req, res) => {
       });
     }
 
-    const token = jwt.sign({ id: user.userId }, process.env.JWT_SECRET, {
-      expiresIn: "2h",
-    });
-
     const { password: _, ...userWithoutPassword } = user;
 
-    // TODO: optionally store token in cookie or session
-    // res.cookie("token", token, { httpOnly: true });
+    // Generate token
+    const token = jwt.sign(
+      { id: user.userId, name: user.name, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "2d" } // keep user logged in for 2 days
+    );
+
+    // store token in a cookie for session
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
 
     res.redirect("/");
   } catch (err) {
@@ -110,4 +117,9 @@ export const login = async (req, res) => {
       error: "Something went wrong. Please try again later.",
     });
   }
+};
+
+export const logout = (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/login");
 };

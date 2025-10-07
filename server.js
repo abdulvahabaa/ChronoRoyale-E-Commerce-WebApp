@@ -7,6 +7,8 @@ import { fileURLToPath } from "url";
 import { engine } from "express-handlebars";
 import adminRoutes from "./routes/adminRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import cookieParser from "cookie-parser";
+import { verifyUser } from "./middlewares/verifyUser.js";
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -17,6 +19,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cookieParser());
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(helmet());
@@ -36,6 +39,18 @@ app.use(
   "/userAssets",
   express.static(path.join(__dirname, "public/userAssets"))
 );
+
+// Apply user verification before user routes
+app.use((req, res, next) => {
+  // Skip for admin routes
+  if (req.originalUrl.startsWith("/admin")) return next();
+
+  verifyUser(req, res, () => {
+    // Make logged-in user available globally in all HBS views
+    res.locals.loggedInUser = req.loggedInUser;
+    next();
+  });
+});
 
 /* ROUTES */
 app.use("/admin", adminRoutes);

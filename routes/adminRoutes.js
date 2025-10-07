@@ -14,7 +14,7 @@ import {
 } from "../controllers/adminControllers/adminController.js";
 import { blockUnblockUser } from "../controllers/userControllers/userController.js";
 import { addProduct } from "../controllers/productsControllers/productController.js";
-import { uploadFiles } from "../middleware/uploadMiddleware.js";
+import { uploadFiles } from "../middlewares/uploadMiddleware.js";
 
 const adminRoutes = express.Router({ mergeParams: true });
 
